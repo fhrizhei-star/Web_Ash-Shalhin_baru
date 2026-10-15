@@ -3,14 +3,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Cpu, Terminal, Shield, BookOpen } from 'lucide-react';
 
 const BOOT_LOGS = [
-  "SYNCHRONIZING SYARIAH KNOWLEDGE CORE...",
-  "ESTABLISHING ARABIC LANGUAGE DATABASES...",
-  "CALIBRATING QUR'ANIC AUDIO SPECTROGRAMS...",
-  "COMPILING CUSTOM EMERALD SHADERS...",
-  "LOADING KITAB KUNING DIGITAL LIBRARIES...",
-  "INITIALIZING TAHFIDZ TRACKING METRICS...",
-  "ESTABLISHING SECURE MA'HAD PROTOCOLS...",
-  "ASH-SHALIHIN CORE ONLINE. ASSALAMUALAIKUM.",
+  "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ...",
+  "Menyucikan Niat & Meluruskan Orientasi Belajar...",
+  "Membuka Gerbang Khazanah Keilmuan Islam...",
+  "Mengkaji Ayat-ayat Kauniyah & Qur'aniyah...",
+  "Menyelami Kedalaman Kitab Turats & Akhlak Mulia...",
+  "Mengintegrasikan Syariah, Sains, & Teknologi Modern...",
+  "Menyiapkan Generasi Rabbani Berwawasan Global...",
+  "Ash-Shalihin Core Online. Assalamu'alaikum Warahmatullahi Wabarakatuh.",
 ];
 
 export default function Loading({ onFinished }) {
@@ -72,9 +72,9 @@ export default function Loading({ onFinished }) {
       {!isDone && (
         <motion.div
           initial={{ opacity: 1 }}
-          exit={{ 
+          exit={{
             clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)',
-            transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } 
+            transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] }
           }}
           style={{ clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)' }}
           className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-academy-obsidian text-white overflow-hidden tech-grid-bg"
@@ -84,23 +84,62 @@ export default function Loading({ onFinished }) {
           <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[400px] h-[400px] bg-academy-mint/5 rounded-full blur-[100px] pointer-events-none animate-pulse-slow"></div>
 
           <div className="relative z-10 w-full max-w-md px-6 flex flex-col items-center">
-            {/* Holographic Spinning Emblem */}
-            <div className="relative mb-8 w-24 h-24 flex items-center justify-center">
-              <div className="absolute inset-0 rounded-full border border-academy-mint/20 border-t-academy-mint animate-spin-slow h-24 w-24"></div>
-              <div className="absolute inset-2 rounded-full border border-dashed border-academy-emerald/30 animate-spin h-20 w-20 [animation-direction:reverse]"></div>
-              
-              {/* Center Tech Core */}
-              <motion.div 
-                animate={{ scale: [1, 1.1, 1] }}
-                transition={{ repeat: Infinity, duration: 2 }}
-                className="w-12 h-12 bg-gradient-to-tr from-academy-emerald to-academy-mint rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.4)]"
+            {/* Holographic Spinning Rub el Hizb Emblem */}
+            <div className="relative mb-8 w-28 h-28 flex items-center justify-center">
+              {/* Outer Glow Mandala */}
+              <div className="absolute inset-0 rounded-full bg-academy-emerald/10 blur-xl pointer-events-none animate-pulse-slow"></div>
+
+              {/* Outer Star (Rub el Hizb Layer 1) - Rotates Clockwise */}
+              <motion.svg
+                animate={{ rotate: 360 }}
+                transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
+                viewBox="0 0 100 100"
+                className="absolute w-28 h-28 text-academy-mint/40 drop-shadow-[0_0_8px_rgba(16,185,129,0.3)]"
               >
-                <BookOpen className="w-6 h-6 text-white" />
+                <rect x="25" y="25" width="50" height="50" fill="none" stroke="currentColor" strokeWidth="1.5" transform="rotate(0 50 50)" />
+                <rect x="25" y="25" width="50" height="50" fill="none" stroke="currentColor" strokeWidth="1.5" transform="rotate(45 50 50)" />
+                <circle cx="50" cy="50" r="38" fill="none" stroke="currentColor" strokeWidth="0.8" strokeDasharray="3,3" />
+              </motion.svg>
+
+              {/* Inner Star (Rub el Hizb Layer 2) - Rotates Counter-Clockwise */}
+              <motion.svg
+                animate={{ rotate: -360 }}
+                transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
+                viewBox="0 0 100 100"
+                className="absolute w-20 h-20 text-[#d4af37]/70 drop-shadow-[0_0_6px_rgba(212,175,55,0.4)]"
+              >
+                <rect x="27.5" y="27.5" width="45" height="45" fill="none" stroke="currentColor" strokeWidth="1.8" transform="rotate(0 50 50)" />
+                <rect x="27.5" y="27.5" width="45" height="45" fill="none" stroke="currentColor" strokeWidth="1.8" transform="rotate(45 50 50)" />
+                <circle cx="50" cy="50" r="28" fill="none" stroke="currentColor" strokeWidth="0.8" />
+              </motion.svg>
+
+              {/* Center Core with pulsing gradient & Glowing Book Icon */}
+              <motion.div
+                animate={{ scale: [1, 1.08, 1] }}
+                transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                className="relative z-10 w-12 h-12 bg-gradient-to-tr from-academy-emerald to-[#d4af37] rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.5)] border border-[#d4af37]/30"
+              >
+                <BookOpen className="w-5 h-5 text-white" />
               </motion.div>
             </div>
 
+            {/* Elegant Bismillah Calligraphy */}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 1 }}
+              className="text-center mb-3"
+            >
+              <span
+                className="text-2xl sm:text-3xl font-medium tracking-wide text-[#d4af37] drop-shadow-[0_0_10px_rgba(212,175,55,0.25)]"
+                style={{ fontFamily: "'Amiri', 'Noto Naskh Arabic', serif" }}
+              >
+                بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+              </span>
+            </motion.div>
+
             {/* Academy Branding */}
-            <motion.h1 
+            <motion.h1
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.2 }}
@@ -108,7 +147,7 @@ export default function Loading({ onFinished }) {
             >
               Ash-Shalihin
             </motion.h1>
-            <motion.p 
+            <motion.p
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.3 }}
@@ -121,35 +160,35 @@ export default function Loading({ onFinished }) {
             <div className="w-full relative mb-4">
               <div className="flex justify-between items-baseline mb-2">
                 <span className="text-[10px] font-outfit tracking-widest text-emerald-100/50 uppercase flex items-center gap-1.5">
-                  <Terminal className="w-3 h-3 text-academy-mint" /> System Boot
+                  <Terminal className="w-3 h-3 text-[#d4af37]" /> TAHAP MEMBACA
                 </span>
-                <span className="text-3xl font-light font-satoshi text-academy-mint tracking-wider">
+                <span className="text-3xl font-light font-satoshi text-[#d4af37] tracking-wider">
                   {progress}<span className="text-sm font-outfit text-white/50">%</span>
                 </span>
               </div>
 
               {/* Holographic Track */}
               <div className="h-[2px] w-full bg-white/10 rounded-full overflow-hidden">
-                <motion.div 
-                  className="h-full bg-gradient-to-r from-academy-emerald to-academy-mint shadow-[0_0_10px_#10b981]"
+                <motion.div
+                  className="h-full bg-gradient-to-r from-academy-emerald to-[#d4af37] shadow-[0_0_10px_rgba(212,175,55,0.4)]"
                   style={{ width: `${progress}%` }}
                 ></motion.div>
               </div>
             </div>
 
             {/* Live Terminal Boot Log */}
-            <div className="w-full bg-[#03130d] border border-white/5 rounded p-3 text-[10px] font-mono text-emerald-100/70 h-14 overflow-hidden flex items-start gap-2 shadow-[inset_0_2px_10px_rgba(0,0,0,0.5)]">
-              <span className="text-academy-mint select-none animate-pulse">{'>'}</span>
-              <div className="flex flex-col justify-start">
-                <span className="tracking-wide animate-fade-in">{currentLog}</span>
-                <span className="text-[8px] text-white/30 uppercase tracking-widest mt-1">Status: OK</span>
+            <div className="w-full bg-[#020e0a] border border-[#d4af37]/15 rounded-lg p-3.5 text-[10px] font-mono text-emerald-100/80 h-16 overflow-hidden flex items-start gap-2.5 shadow-[inset_0_2px_10px_rgba(0,0,0,0.6)]">
+              <span className="text-[#d4af37] select-none animate-pulse">۞</span>
+              <div className="flex flex-col justify-start w-full">
+                <span className="tracking-wide animate-fade-in font-medium" style={{ fontFamily: currentLog.startsWith('بِ') ? "'Amiri', 'Noto Naskh Arabic', serif" : "inherit", fontSize: currentLog.startsWith('بِ') ? "12px" : "inherit" }}>{currentLog}</span>
+                <span className="text-[7.5px] text-[#d4af37]/60 uppercase tracking-widest mt-1">PESANTREN MODERN ASH-SHALIHIN</span>
               </div>
             </div>
 
             {/* Tech details */}
-            <div className="mt-12 flex items-center gap-6 opacity-30 text-[9px] font-outfit tracking-widest uppercase">
-              <div className="flex items-center gap-1"><BookOpen className="w-3 h-3" /> Syariah Core</div>
-              <div className="flex items-center gap-1"><Cpu className="w-3 h-3" /> WebGL 3D</div>
+            <div className="mt-12 flex items-center gap-6 opacity-40 text-[9px] font-outfit tracking-widest uppercase">
+              <div className="flex items-center gap-1"><BookOpen className="w-3 h-3 text-[#d4af37]" /> THALABUL ILMI</div>
+              <div className="flex items-center gap-1"><Cpu className="w-3 h-3 text-academy-mint" /> SYARIAH & TEKNOLOGI</div>
             </div>
           </div>
         </motion.div>

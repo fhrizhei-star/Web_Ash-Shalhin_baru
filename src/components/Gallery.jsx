@@ -1,109 +1,124 @@
-import React, { useState } from 'react';
-import { Camera, Image as ImageIcon, Eye, X, ArrowLeft, ArrowRight } from 'lucide-react';
+import React, { useState } from "react";
+import {
+  Camera,
+  Image as ImageIcon,
+  Eye,
+  X,
+  ArrowLeft,
+  ArrowRight,
+} from "lucide-react";
 
 const CATEGORIES = [
-  { id: 'all', label: 'Semua Dokumentasi' },
-  { id: 'academic', label: 'Riset & Kitab Kuning' },
-  { id: 'facilities', label: 'Fasilitas Ma\'had' },
-  { id: 'activities', label: 'Aktivitas Santri' },
-  { id: 'sports', label: 'Olahraga Sunnah' }
+  { id: "all", label: "Semua Dokumentasi" },
+  { id: "facilities", label: "Fasilitas Ponpes" },
+  { id: "activities", label: "Aktivitas Siswa" },
 ];
-
+// galery
 const ITEMS = [
   {
     id: 1,
-    cat: 'academic',
-    title: 'Kajian Kitab Turats Interaktif',
-    desc: 'Kajian fiqih muamalah terintegrasi dengan pemetaan logika hukum syariah berbasis mindmapping digital.',
-    img: 'https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=800&q=80'
+    cat: "facilities",
+    title: "Lapangan",
+    desc: "Fasilitas lapangan olahraga yang luas dan representatif untuk mendukung aktivitas fisik, upacara, dan kegiatan ekstrakurikuler santri.",
+    img: "https://www.image2url.com/r2/default/images/1781192638156-e475437a-7469-443a-80df-282b4c24409a.jpeg",
   },
   {
     id: 2,
-    cat: 'facilities',
-    title: 'Perpustakaan Kubah Klasik',
-    desc: 'Perpustakaan pusat tiga lantai yang menggabungkan ribuan kitab kuning salafiyah dengan akses e-library dunia.',
-    img: 'https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&w=800&q=80'
+    cat: "facilities",
+    title: "Perpustakaan",
+    desc: "Perpustakaan yang nyaman dengan koleksi Kitab Kuning salafiyah klasik serta berbagai literatur akademik penunjang wawasan santri.",
+    img: "https://www.image2url.com/r2/default/images/1781192646448-6d38ed4a-3bf4-4e0e-80f9-8c6101b6c463.jpeg",
   },
   {
     id: 3,
-    cat: 'activities',
-    title: 'Klub Rekayasa Robotika Santri',
-    desc: 'Santri mengalibrasi sensor navigasi inframerah dan sensor lintasan pada robot purwarupa otonom.',
-    img: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80'
+    cat: "facilities",
+    title: "Ruang Seni",
+    desc: "Wadah kreativitas santri dalam mempelajari seni bela diri, kaligrafi Islam, serta berbagai bentuk ekspresi seni budaya positif lainnya.",
+    img: "https://www.image2url.com/r2/default/images/1781192673685-884124d8-2f4f-4e59-9073-d09a9d01e60b.jpeg",
   },
   {
     id: 4,
-    cat: 'academic',
-    title: 'Riset Herbal Thibbun Nabawi',
-    desc: 'Santri melakukan isolasi senyawa aktif tanaman obat-obatan herbal berkhasiat tinggi di laboratorium biologi.',
-    img: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=800&q=80'
+    cat: "activities",
+    title: "Kegiatan PERSAMI santri MTs dan MA putra tanggal 23-24 Mei 2026",
+    desc: "Kegiatan Perkemahan Sabtu Minggu (PERSAMI) yang diadakan untuk melatih kemandirian, kekompakan, dan ketangguhan mental santri putra.",
+    img: "https://www.image2url.com/r2/default/images/1781244276699-bd3bcd1c-a3f8-40ef-9948-979dcb7dd185.webp",
   },
   {
     id: 5,
-    cat: 'activities',
-    title: 'Debat Model United Nations',
-    desc: 'Simulasi sidang umum PBB, delegasi santri memaparkan konsep keadilan iklim global berbasis etika Islam.',
-    img: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80'
+    cat: "activities",
+    title: "Kegiatan MPLM (Masa Pengenalan Lingkungan Madrasah) Tingkat MTs",
+    desc: "Masa Pengenalan Lingkungan Madrasah (MPLM) guna membimbing santri baru tingkat MTs agar lebih mengenal tradisi akademik dan kepesantrenan.",
+    img: "https://www.image2url.com/r2/default/images/1781244273148-ee82ec8d-eb74-4f59-8304-2f0f19f05400.webp",
   },
   {
     id: 6,
-    cat: 'facilities',
-    title: 'Lab Dirgantara & Roket Air',
-    desc: 'Santri merancang propulsi roket dan melakukan simulasi CFD untuk koefisien hambatan udara di asrama.',
-    img: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80'
+    cat: "activities",
+    title: "Acara Tasyakuran Penamatan Santri Pondok Pesantren Ash-Shalihin Tingkat MI, MTs, dan MA",
+    desc: "Prosesi wisuda dan tasyakuran penamatan santri seluruh jenjang pendidikan di bawah naungan Pondok Pesantren Ash-Shalihin.",
+    img: "https://www.image2url.com/r2/default/images/1781244264229-11098134-f189-4547-9cfe-384e7e055528.webp",
   },
   {
     id: 7,
-    cat: 'sports',
-    title: 'Sunnah Archery (Panahan) Arena',
-    desc: 'Latihan panahan rutin melatih akurasi, kekuatan mental, dan fokus membidik sasaran di area hijau pesantren.',
-    img: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80'
+    cat: "activities",
+    title: "Pengasuh PP. Ash-Shalihin sekaligus alumni LKLB dalam Konferensi Internasional Tahun 2025",
+    desc: "Partisipasi aktif pimpinan dan pengasuh pondok pesantren dalam forum internasional guna memperkokoh dakwah dan jaringan global.",
+    img: "https://www.image2url.com/r2/default/images/1781244275527-c1a86bff-03da-4766-8768-96fea6849e4c.webp",
   },
   {
     id: 8,
-    cat: 'sports',
-    title: 'Seni Kaligrafi & Melukis Islami',
-    desc: 'Santri mengekspresikan kedalaman seni khat mushaf dan kaligrafi kontemporer pada galeri pameran.',
-    img: 'https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=800&q=80'
-  }
+    cat: "activities",
+    title: "Kegiatan Penyuluhan kesehatan dan gerakan hidup sehat",
+    desc: "Edukasi berkala mengenai kesehatan diri dan lingkungan pesantren guna membiasakan pola hidup sehat di lingkungan asrama.",
+    img: "https://www.image2url.com/r2/default/images/1781244265999-a891ccd4-399b-4ff9-a75b-97d3d1944041.webp",
+  },
 ];
 
 export default function Gallery() {
-  const [activeCat, setActiveCat] = useState('all');
+  const [activeCat, setActiveCat] = useState("all");
   const [lightboxIndex, setLightboxIndex] = useState(null);
 
-  const filteredItems = activeCat === 'all' 
-    ? ITEMS 
-    : ITEMS.filter(item => item.cat === activeCat);
+  const filteredItems =
+    activeCat === "all"
+      ? ITEMS
+      : ITEMS.filter((item) => item.cat === activeCat);
 
   const handlePrev = (e) => {
     e.stopPropagation();
-    setLightboxIndex((prev) => (prev === 0 ? filteredItems.length - 1 : prev - 1));
+    setLightboxIndex((prev) =>
+      prev === 0 ? filteredItems.length - 1 : prev - 1,
+    );
   };
 
   const handleNext = (e) => {
     e.stopPropagation();
-    setLightboxIndex((prev) => (prev === filteredItems.length - 1 ? 0 : prev + 1));
+    setLightboxIndex((prev) =>
+      prev === filteredItems.length - 1 ? 0 : prev + 1,
+    );
   };
 
   return (
-    <section id="gallery" className="py-24 bg-[#F3F7F5] relative overflow-hidden tech-grid-bg">
+    <section
+      id="gallery"
+      className="py-24 bg-[#F3F7F5] relative overflow-hidden tech-grid-bg"
+    >
       {/* Glow overlays */}
       <div className="absolute top-1/4 right-0 w-[450px] h-[450px] bg-academy-mint/5 rounded-full blur-[120px] pointer-events-none"></div>
       <div className="absolute bottom-1/4 left-0 w-[350px] h-[350px] bg-academy-emerald/5 rounded-full blur-[90px] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-[11px] font-mono tracking-[0.4em] text-academy-emerald font-semibold uppercase bg-academy-emerald/10 px-3 py-1 rounded-full">
             DOKUMENTASI KAMPUS
           </span>
           <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight font-satoshi mt-4 mb-6 text-academy-obsidian">
-            Galeri Aktivitas & Pembelajaran <span className="gradient-text-mint">Santri</span>
+            Galeri Aktivitas & Pembelajaran{" "}
+            <span className="gradient-text-mint">Santri</span>
           </h2>
           <p className="text-sm font-inter text-academy-obsidian/75 leading-relaxed">
-            Eksplorasi visual aktivitas keagamaan, riset teknologi di asrama pintar, kaligrafi seni, serta latihan olahraga berkuda dan memanah sunnah.
+            Eksplorasi visual aktivitas keagamaan, riset teknologi di asrama
+            pintar, kaligrafi seni, serta latihan olahraga berkuda dan memanah
+            sunnah.
           </p>
         </div>
 
@@ -115,11 +130,13 @@ export default function Gallery() {
               onClick={() => setActiveCat(cat.id)}
               className={`px-5 py-2.5 rounded-full text-xs font-semibold font-outfit tracking-wider transition-all duration-300 ${
                 activeCat === cat.id
-                  ? 'text-white bg-academy-obsidian shadow-md'
-                  : 'text-academy-obsidian/70 hover:text-academy-emerald hover:bg-white/70'
+                  ? "text-white bg-academy-obsidian shadow-md"
+                  : "text-academy-obsidian/70 hover:text-academy-emerald hover:bg-white/70"
               }`}
             >
-              {cat.id === 'all' ? <ImageIcon className="w-3.5 h-3.5 inline mr-1.5 -mt-0.5" /> : null}
+              {cat.id === "all" ? (
+                <ImageIcon className="w-3.5 h-3.5 inline mr-1.5 -mt-0.5" />
+              ) : null}
               {cat.label}
             </button>
           ))}
@@ -134,9 +151,9 @@ export default function Gallery() {
               className="relative rounded-2xl overflow-hidden shadow-premium-card aspect-[4/3] glass-card border border-white/60 cursor-pointer group"
             >
               {/* Image element */}
-              <img 
-                src={item.img} 
-                alt={item.title} 
+              <img
+                src={item.img}
+                alt={item.title}
                 className="w-full h-full object-cover filter saturate-[0.85] contrast-[1.03] transition-transform duration-700 ease-[0.16,1,0.3,1] group-hover:scale-110 group-hover:rotate-1"
               />
 
@@ -149,7 +166,7 @@ export default function Gallery() {
 
                 {/* Subtitle / tag */}
                 <span className="text-[9px] font-bold font-mono tracking-[0.25em] text-academy-mint mb-1 uppercase">
-                  {CATEGORIES.find(c => c.id === item.cat)?.label}
+                  {CATEGORIES.find((c) => c.id === item.cat)?.label}
                 </span>
 
                 {/* Title */}
@@ -165,12 +182,11 @@ export default function Gallery() {
             </div>
           ))}
         </div>
-
       </div>
 
       {/* 2. Fullscreen Lightbox Portal */}
       {lightboxIndex !== null && (
-        <div 
+        <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-academy-obsidian/95 backdrop-blur-xl text-white select-none animate-fade-in"
           onClick={() => setLightboxIndex(null)}
         >
@@ -200,7 +216,7 @@ export default function Gallery() {
           </button>
 
           {/* Current Main Active Image Frame */}
-          <div 
+          <div
             className="max-w-4xl max-h-[70vh] w-full px-6 flex flex-col items-center"
             onClick={(e) => e.stopPropagation()} // halt bubbling
           >
@@ -215,7 +231,11 @@ export default function Gallery() {
             {/* Info details block */}
             <div className="text-center mt-6 max-w-xl space-y-2">
               <span className="text-[10px] font-bold font-mono tracking-widest text-academy-mint uppercase">
-                {CATEGORIES.find(c => c.id === filteredItems[lightboxIndex].cat)?.label}
+                {
+                  CATEGORIES.find(
+                    (c) => c.id === filteredItems[lightboxIndex].cat,
+                  )?.label
+                }
               </span>
               <h3 className="text-xl font-bold font-satoshi text-white">
                 {filteredItems[lightboxIndex].title}
@@ -238,10 +258,8 @@ export default function Gallery() {
           <div className="absolute bottom-6 left-0 w-full text-center text-xs font-outfit text-white/50">
             Slide {lightboxIndex + 1} of {filteredItems.length}
           </div>
-
         </div>
       )}
-
     </section>
   );
 }

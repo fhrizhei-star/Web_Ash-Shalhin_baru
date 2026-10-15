@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowUpRight, BookOpen } from 'lucide-react';
+import { Menu, X, ArrowUpRight } from 'lucide-react';
 
 const NAV_ITEMS = [
   { label: 'Home', id: 'home' },
@@ -69,9 +69,13 @@ export default function Navbar() {
             onClick={() => scrollToSection('home')}
             className="flex items-center gap-3 group focus:outline-none"
           >
-            <div className="relative w-10 h-10 flex items-center justify-center rounded-lg bg-gradient-to-tr from-academy-emerald to-academy-mint shadow-[0_0_15px_rgba(16,185,129,0.3)] transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_0_20px_rgba(16,185,129,0.5)]">
-              <BookOpen className="w-5 h-5 text-white" />
-              <div className="absolute inset-0 rounded-lg border border-white/20 animate-pulse"></div>
+            <div className="relative w-10 h-10 flex items-center justify-center rounded-lg overflow-hidden bg-gradient-to-tr from-academy-emerald to-academy-mint shadow-[0_0_15px_rgba(16,185,129,0.3)] transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_0_20px_rgba(16,185,129,0.5)]">
+              <img 
+                src="/img/Logo Ash.jpg" 
+                alt="Logo Ash-Shalihin" 
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 rounded-lg border border-white/20 animate-pulse pointer-events-none"></div>
             </div>
             <div className="flex flex-col items-start text-left">
               <span className="text-sm font-bold font-satoshi tracking-[0.15em] uppercase text-academy-obsidian group-hover:text-academy-emerald transition-colors duration-300">
